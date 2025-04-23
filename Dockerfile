@@ -1,14 +1,20 @@
-# Use Eclipse Temurin OpenJDK 21 runtime image
+FROM eclipse-temurin:21-jdk AS build
+
+WORKDIR /app
+
+# Copy everything and build the JAR
+COPY . .
+RUN ./mvnw clean package -DskipTests
+
+# ---- Production image ----
 FROM eclipse-temurin:21-jre
 
-# Argument for the JAR file
-ARG JAR_FILE=target/*.jar
+WORKDIR /app
 
-# Copy the application JAR to the container
-COPY ${JAR_FILE} application.jar
+# Copy the built JAR from the previous stage
+COPY --from=build /app/target/*.jar application.jar
 
-# Expose application port (optional, if your app runs on a specific port like 8080)
+ENV PORT=8080
 EXPOSE 8080
 
-# Run the application
 ENTRYPOINT ["java", "-jar", "application.jar"]
