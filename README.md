@@ -6,7 +6,7 @@ A backend API designed to manage mobile service providers and their offerings. B
 
 ## 🔗 Source Code
 
-> [GitHub Repository]([https://github.com/your-username/mobileprovider-api](https://github.com/BerkantGC/mobile-provider))  
+> **GitHub Repository**: [https://github.com/BerkantGC/mobile-provider](https://github.com/BerkantGC/mobile-provider)
 
 ---
 ## 🌐 API Access
